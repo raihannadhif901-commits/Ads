@@ -1,0 +1,283 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  animation: fadeIn 300ms ease;
+}
+
+.modal {
+  background: var(--bg-primary);
+  width: 100%;
+  max-width: 440px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-xl);
+  animation: slideUp 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  transition: all 200ms ease;
+  backdrop-filter: blur(4px);
+}
+
+.closeBtn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.headerImageWrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  background: var(--bg-tertiary);
+  flex-shrink: 0;
+}
+
+.headerImage {
+  object-fit: cover;
+}
+
+.content {
+  padding: var(--space-xl);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.brandBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--accent-primary-light);
+  color: var(--accent-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin-bottom: var(--space-xl);
+}
+
+.section {
+  margin-bottom: var(--space-lg);
+}
+
+.sectionTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.sectionText {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.list {
+  list-style-type: disc;
+  padding-left: var(--space-lg);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.list li {
+  margin-bottom: 4px;
+}
+
+.actionWrap {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-light);
+}
+
+.redeemBtn {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+}
+
+.redeemBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 106, 240, 0.3);
+}
+
+.redeemBtn:active {
+  transform: translateY(0);
+}
+
+.redeemBtn.loading {
+  background: var(--text-tertiary);
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.codeContainer {
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  animation: scaleIn 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.successIcon {
+  color: #16A34A;
+  margin-bottom: var(--space-sm);
+  display: flex;
+  justify-content: center;
+}
+
+.codeLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.codeBox {
+  background: white;
+  border: 2px dashed #4ADE80;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-sm);
+}
+
+.code {
+  font-family: 'Outfit', monospace;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #16A34A;
+  letter-spacing: 2px;
+}
+
+.codeHelper {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.barcodeBox {
+  border: none;
+  padding: var(--space-sm);
+}
+
+.barcodeWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  color: #1a1a1a;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.barcodeIcon {
+  width: 100%;
+  height: 60px;
+}
+
+.barcodeText {
+  font-family: 'Outfit', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal {
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    max-height: 95vh;
+  }
+}

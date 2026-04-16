@@ -1,0 +1,145 @@
+export interface Voucher {
+  id: string;
+  brand: string;
+  title: string;
+  category: string;
+  image: string;
+  originalPrice: string;
+  salePrice: string;
+  discountPercent: string;
+}
+
+export const vouchers: Voucher[] = [
+  {
+    id: '1',
+    brand: 'CINEPOLIS',
+    title: 'Voucher Cinepolis Value Rp 100.000',
+    category: 'Experience',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 100.000',
+    salePrice: 'Rp 87.500',
+    discountPercent: '13%',
+  },
+  {
+    id: '2',
+    brand: 'TIKTOK',
+    title: 'TikTok Live Gift Card IDR 20.000',
+    category: 'Apps',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 20.000',
+    salePrice: 'Rp 19.200',
+    discountPercent: '4%',
+  },
+  {
+    id: '3',
+    brand: 'MATAHARI',
+    title: 'Voucher Digital Matahari Value Rp 100.000',
+    category: 'Experience',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 100.000',
+    salePrice: 'Rp 96.000',
+    discountPercent: '4%',
+  },
+  {
+    id: '4',
+    brand: "McDonald's",
+    title: 'McD Paket Hemat Big Mac Gratis',
+    category: 'F&B',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 50.000',
+    salePrice: 'Rp 42.500',
+    discountPercent: '15%',
+  },
+  {
+    id: '5',
+    brand: 'STEAM',
+    title: 'Steam Wallet IDR 60.000',
+    category: 'Game',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 60.000',
+    salePrice: 'Rp 57.000',
+    discountPercent: '5%',
+  },
+  {
+    id: '6',
+    brand: 'GRAB',
+    title: 'GrabFood Voucher Rp 50.000',
+    category: 'F&B',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 50.000',
+    salePrice: 'Rp 45.000',
+    discountPercent: '10%',
+  },
+  {
+    id: '7',
+    brand: 'TOKOPEDIA',
+    title: 'Tokopedia Gift Card Rp 100.000',
+    category: 'Apps',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 100.000',
+    salePrice: 'Rp 95.000',
+    discountPercent: '5%',
+  },
+  {
+    id: '8',
+    brand: 'ALFAMART',
+    title: 'Voucher Belanja Alfamart Rp 50.000',
+    category: 'Experience',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 50.000',
+    salePrice: 'Rp 47.500',
+    discountPercent: '5%',
+  },
+  {
+    id: '9',
+    brand: 'SPOTIFY',
+    title: 'Spotify Premium 1 Bulan',
+    category: 'Apps',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 54.990',
+    salePrice: 'Rp 49.900',
+    discountPercent: '9%',
+  },
+  {
+    id: '10',
+    brand: 'STARBUCKS',
+    title: 'Starbucks E-Voucher Rp 50.000',
+    category: 'F&B',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 50.000',
+    salePrice: 'Rp 46.000',
+    discountPercent: '8%',
+  },
+  {
+    id: '11',
+    brand: 'HALODOC',
+    title: 'Konsultasi Dokter Gratis',
+    category: 'Health',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 30.000',
+    salePrice: 'Rp 25.000',
+    discountPercent: '17%',
+  },
+  {
+    id: '12',
+    brand: 'TRAVELOKA',
+    title: 'Traveloka Hotel Voucher Rp 200.000',
+    category: 'Experience',
+    image: '/voucher1.png',
+    originalPrice: 'Rp 200.000',
+    salePrice: 'Rp 180.000',
+    discountPercent: '10%',
+  },
+];
+
+export const categories = [
+  { name: 'All', icon: 'grid' },
+  { name: 'F&B', icon: 'utensils' },
+  { name: 'Activity', icon: 'clock' },
+  { name: 'Apps', icon: 'smartphone' },
+  { name: 'Beauty', icon: 'sparkles' },
+  { name: 'Experience', icon: 'briefcase' },
+  { name: 'Game', icon: 'gamepad' },
+  { name: 'Health', icon: 'activity' },
+  { name: 'Invest', icon: 'dollar' },
+];

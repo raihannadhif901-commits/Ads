@@ -1,0 +1,74 @@
+.section {
+  padding: var(--space-2xl) 0;
+}
+
+.title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  letter-spacing: 0.5px;
+}
+
+.carousel {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  padding-bottom: var(--space-sm);
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel:active {
+  cursor: grabbing;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.videoCard {
+  flex-shrink: 0;
+  width: 300px;
+  scroll-snap-align: start;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.videoCard:hover .video {
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .videoCard {
+    width: 180px;
+    aspect-ratio: 9 / 16;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .carousel {
+    gap: var(--space-sm);
+  }
+
+  .video {
+    object-fit: cover;
+  }
+}

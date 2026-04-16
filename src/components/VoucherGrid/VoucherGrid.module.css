@@ -1,0 +1,78 @@
+.pillWrap {
+  margin-bottom: var(--space-sm);
+}
+
+.pill {
+  display: inline-block;
+  padding: 8px 20px;
+  border: 1.5px solid var(--accent-primary);
+  color: var(--accent-primary);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.sectionTitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  letter-spacing: 0.5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.emptyText {
+  color: var(--text-tertiary);
+  font-size: 1rem;
+}
+
+.moreWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2xl);
+}
+
+.moreBtn {
+  padding: 12px 36px;
+  border: 1.5px solid var(--accent-primary);
+  color: var(--accent-primary);
+  background: transparent;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.moreBtn:hover {
+  background: var(--accent-primary);
+  color: white;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+}

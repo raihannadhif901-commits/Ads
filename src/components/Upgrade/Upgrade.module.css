@@ -1,0 +1,120 @@
+.wrapper {
+  min-height: 60vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.glowOrb {
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(79, 106, 240, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-4xl) var(--space-xl);
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  animation: fadeUp 600ms ease-out;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, rgba(79, 106, 240, 0.1), rgba(168, 85, 247, 0.1));
+  border: 1px solid rgba(79, 106, 240, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xl);
+  letter-spacing: -1px;
+}
+
+.gradient {
+  background: linear-gradient(135deg, #4F6AF0 0%, #A855F7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto var(--space-md);
+}
+
+.subtitleSecondary {
+  font-size: 1rem;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-2xl);
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--accent-gradient);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 300ms ease;
+  box-shadow: 0 4px 16px rgba(79, 106, 240, 0.3);
+}
+
+.ctaBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(79, 106, 240, 0.4);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+}

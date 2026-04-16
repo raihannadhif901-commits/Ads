@@ -1,0 +1,264 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  animation: fadeIn 200ms ease;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  animation: fadeInUp 300ms ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  padding: var(--space-2xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.modalHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+.closeBtn {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: var(--transition-fast);
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.1);
+}
+
+.modalBrandLogo {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+  position: relative;
+  z-index: 1;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.modalDiscount {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.modalDiscountLabel {
+  font-size: 1.1rem;
+  font-weight: 600;
+  opacity: 0.8;
+  position: relative;
+  z-index: 1;
+}
+
+.modalBody {
+  padding: var(--space-xl);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.infoLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.infoValue {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.priceBadge {
+  display: inline-flex;
+  padding: 8px 18px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+.infoSection {
+  margin-bottom: var(--space-lg);
+}
+
+.infoSectionTitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.infoSectionText {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.barcode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+}
+
+.barcodeLines {
+  display: flex;
+  align-items: end;
+  gap: 2px;
+  height: 50px;
+}
+
+.barcodeLine {
+  background: var(--text-primary);
+  border-radius: 1px;
+}
+
+.modalFooter {
+  padding: var(--space-md) var(--space-xl) var(--space-xl);
+}
+
+.claimBtn {
+  width: 100%;
+  padding: 16px;
+  background: var(--text-primary);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-md);
+}
+
+.claimBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  opacity: 0.9;
+}
+
+/* Dashed separator */
+.separator {
+  position: relative;
+  margin: 0 var(--space-xl);
+  border: none;
+  border-top: 2px dashed var(--border-light);
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: var(--bg-primary);
+  border-radius: 50%;
+  top: -13px;
+}
+
+.separator::before {
+  left: -36px;
+}
+
+.separator::after {
+  right: -36px;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .modalHeader {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .modalDiscount {
+    font-size: 2.75rem;
+  }
+
+  .modalBody {
+    padding: var(--space-lg);
+  }
+
+  .modalFooter {
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
+  }
+
+  .separator {
+    margin: 0 var(--space-lg);
+  }
+}
