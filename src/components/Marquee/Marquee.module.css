@@ -1,36 +1,48 @@
-.marquee {
+.marqueeWrapper {
   background: #1B7A2B;
   padding: 12px 0;
-  overflow: hidden;
-  white-space: nowrap;
+  width: 100%;
 }
 
 .track {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  padding: 0 var(--space-lg);
+  -webkit-overflow-scrolling: touch;
+  user-select: none;
+  scroll-behavior: auto;
+}
+
+.track.dragging {
+  cursor: grabbing;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
   display: inline-flex;
-  animation: scroll 30s linear infinite;
-}
-
-.text {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #ffffff;
-  padding-right: 20px;
-  letter-spacing: 0.3px;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .textWrap {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 
 .ctaLink {
@@ -40,8 +52,19 @@
   transition: opacity 0.2s;
   cursor: pointer;
   margin: 0 4px;
+  -webkit-user-drag: none;
 }
 
 .ctaLink:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 6px 12px;
+  }
+  
+  .textWrap {
+    font-size: 0.8rem;
+  }
 }
