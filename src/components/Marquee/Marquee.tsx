@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import styles from './Marquee.module.css';
 
 const announcements = [
@@ -34,65 +34,84 @@ const announcements = [
 ];
 
 export default function Marquee() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const startPos = useRef(0);
-  const startScroll = useRef(0);
+  const [current, setCurrent] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const startXRef = useRef(0);
+  const deltaXRef = useRef(0);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!scrollRef.current) return;
-    isDragging.current = true;
-    startPos.current = e.pageX - scrollRef.current.offsetLeft;
-    startScroll.current = scrollRef.current.scrollLeft;
+  const SLIDE_COUNT = announcements.length;
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % SLIDE_COUNT);
+  }, [SLIDE_COUNT]);
+
+  const startAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    autoPlayRef.current = setInterval(next, 4000);
+  }, [next]);
+
+  useEffect(() => {
+    startAutoPlay();
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    };
+  }, [startAutoPlay]);
+
+  const handlePointerDown = (clientX: number) => {
+    setIsDragging(true);
+    startXRef.current = clientX;
+    deltaXRef.current = 0;
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current || !scrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = x - startPos.current;
-    scrollRef.current.scrollLeft = startScroll.current - walk;
+  const handlePointerMove = (clientX: number) => {
+    if (!isDragging) return;
+    deltaXRef.current = clientX - startXRef.current;
   };
 
-  const handleMouseUp = () => {
-    isDragging.current = false;
+  const handlePointerUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    const threshold = 50;
+    if (deltaXRef.current < -threshold) {
+      setCurrent((prev) => Math.min(prev + 1, SLIDE_COUNT - 1));
+    } else if (deltaXRef.current > threshold) {
+      setCurrent((prev) => Math.max(prev - 1, 0));
+    }
+    startAutoPlay();
   };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (!scrollRef.current) return;
-    isDragging.current = true;
-    startPos.current = e.touches[0].pageX - scrollRef.current.offsetLeft;
-    startScroll.current = scrollRef.current.scrollLeft;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging.current || !scrollRef.current) return;
-    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
-    const walk = x - startPos.current;
-    scrollRef.current.scrollLeft = startScroll.current - walk;
-  };
-
-  // Gabungkan array 2x agar di desktop yang layarnya lebar card tetap bisa di-drag panjang
-  const loopedAnnouncements = [...announcements, ...announcements];
 
   return (
     <div className={styles.marqueeWrapper}>
       <div 
-        className={styles.track}
-        ref={scrollRef}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleMouseUp}
+        className={styles.carouselContainer}
+        onTouchStart={(e) => handlePointerDown(e.touches[0].clientX)}
+        onTouchMove={(e) => handlePointerMove(e.touches[0].clientX)}
+        onTouchEnd={handlePointerUp}
+        onMouseDown={(e) => handlePointerDown(e.clientX)}
+        onMouseMove={(e) => {
+          if (isDragging) e.preventDefault();
+          handlePointerMove(e.clientX);
+        }}
+        onMouseUp={handlePointerUp}
+        onMouseLeave={handlePointerUp}
       >
-        {loopedAnnouncements.map((item, i) => (
-          <div key={`${item.id}-${i}`} className={styles.card}>
-            <span className={styles.textWrap}>{item.content}</span>
-          </div>
-        ))}
+        <div 
+          className={styles.track}
+          style={{
+            transform: `translateX(-${current * 100}%)`,
+            transition: isDragging ? 'none' : 'transform 500ms ease',
+          }}
+        >
+          {announcements.map((item) => (
+            <div key={item.id} className={styles.slide}>
+              <div className={styles.card}>
+                <span className={styles.textWrap}>{item.content}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

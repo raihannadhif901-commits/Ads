@@ -2,31 +2,36 @@
   background: #1B7A2B;
   padding: 12px 0;
   width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.carouselContainer {
+  overflow: hidden;
+  width: 100%;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.carouselContainer:active {
+  cursor: grabbing;
 }
 
 .track {
   display: flex;
-  gap: var(--space-md);
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  cursor: grab;
-  padding: 0 var(--space-lg);
-  -webkit-overflow-scrolling: touch;
-  user-select: none;
-  scroll-behavior: auto;
+  width: 100%;
 }
 
-.track.dragging {
-  cursor: grabbing;
-}
-
-.track::-webkit-scrollbar {
-  display: none;
+.slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 var(--space-md);
 }
 
 .card {
-  flex-shrink: 0;
   background: rgba(0, 0, 0, 0.15);
   padding: 8px 16px;
   border-radius: var(--radius-full);
@@ -60,11 +65,17 @@
 }
 
 @media (max-width: 768px) {
+  .slide {
+    padding: 0 var(--space-sm);
+  }
   .card {
     padding: 6px 12px;
+    width: 100%;
+    justify-content: center;
   }
-  
   .textWrap {
     font-size: 0.8rem;
+    white-space: normal;
+    text-align: center;
   }
 }
