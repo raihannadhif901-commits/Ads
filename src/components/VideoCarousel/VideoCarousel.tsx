@@ -11,6 +11,8 @@ export default function VideoCarousel() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
+  const [activeCta, setActiveCta] = useState<number | null>(null);
+
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!scrollRef.current) return;
     setIsDragging(true);
@@ -41,6 +43,11 @@ export default function VideoCarousel() {
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
+  const handleVideoClick = (index: number) => {
+    if (isDragging) return;
+    setActiveCta(activeCta === index ? null : index);
+  };
+
   return (
     <section id="videos" className={styles.section}>
       <div className="container">
@@ -57,7 +64,11 @@ export default function VideoCarousel() {
           onTouchMove={handleTouchMove}
         >
           {Array.from({ length: VIDEO_COUNT }).map((_, i) => (
-            <div key={i} className={styles.videoCard}>
+            <div 
+              key={i} 
+              className={styles.videoCard}
+              onClick={() => handleVideoClick(i)}
+            >
               <video
                 className={styles.video}
                 src="/video1.mp4"
@@ -72,6 +83,18 @@ export default function VideoCarousel() {
                   vid.currentTime = 0;
                 }}
               />
+              
+              {activeCta === i && (
+                <div className={styles.ctaOverlay}>
+                  <div className={styles.ctaContent} onClick={(e) => e.stopPropagation()}>
+                    <h3 className={styles.ctaTitle}>Promo Spesial!</h3>
+                    <p className={styles.ctaDesc}>Jangan lewatkan penawaran menarik hari ini.</p>
+                    <a href="https://www.alfamidiku.com/" target="_blank" rel="noopener noreferrer" className={styles.ctaLinkBtn}>
+                      Klik di sini
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>

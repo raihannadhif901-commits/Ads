@@ -1,23 +1,33 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import styles from './FloatingWindow.module.css';
 
 export default function FloatingWindow() {
   const [visible, setVisible] = useState(true);
+  const [showClose, setShowClose] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowClose(true);
+    }, 20000);
+    return () => clearTimeout(timer);
+  }, []);
 
   if (!visible) return null;
 
   return (
     <div className={styles.floating}>
-      <button
-        className={styles.closeBtn}
-        onClick={() => setVisible(false)}
-        aria-label="Close"
-      >
-        <X size={14} />
-      </button>
+      {showClose && (
+        <button
+          className={styles.closeBtn}
+          onClick={() => setVisible(false)}
+          aria-label="Close"
+        >
+          <X size={14} />
+        </button>
+      )}
       <div className={styles.content}>
         <video
           src="/video1.mp4"
