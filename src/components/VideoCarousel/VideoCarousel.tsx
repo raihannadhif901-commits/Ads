@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { X } from 'lucide-react';
 import styles from './VideoCarousel.module.css';
 
 const VIDEO_COUNT = 5;
@@ -45,60 +46,78 @@ export default function VideoCarousel() {
 
   const handleVideoClick = (index: number) => {
     if (isDragging) return;
-    setActiveCta(activeCta === index ? null : index);
+    setActiveCta(index);
   };
 
   return (
-    <section id="videos" className={styles.section}>
-      <div className="container">
-        <h2 className={styles.title}>VIDEOS</h2>
+    <>
+      <section id="videos" className={styles.section}>
+        <div className="container">
+          <h2 className={styles.title}>VIDEOS</h2>
 
-        <div
-          className={styles.carousel}
-          ref={scrollRef}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-        >
-          {Array.from({ length: VIDEO_COUNT }).map((_, i) => (
-            <div 
-              key={i} 
-              className={styles.videoCard}
-              onClick={() => handleVideoClick(i)}
-            >
-              <video
-                className={styles.video}
-                src="/video1.mp4"
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
-                onMouseLeave={(e) => {
-                  const vid = e.target as HTMLVideoElement;
-                  vid.pause();
-                  vid.currentTime = 0;
-                }}
-              />
-              
-              {activeCta === i && (
-                <div className={styles.ctaOverlay}>
-                  <div className={styles.ctaContent} onClick={(e) => e.stopPropagation()}>
-                    <h3 className={styles.ctaTitle}>Promo Spesial!</h3>
-                    <p className={styles.ctaDesc}>Jangan lewatkan penawaran menarik hari ini.</p>
-                    <a href="https://www.alfamidiku.com/" target="_blank" rel="noopener noreferrer" className={styles.ctaLinkBtn}>
-                      Klik di sini
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
+          <div
+            className={styles.carousel}
+            ref={scrollRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+          >
+            {Array.from({ length: VIDEO_COUNT }).map((_, i) => (
+              <div 
+                key={i} 
+                className={styles.videoCard}
+                onClick={() => handleVideoClick(i)}
+              >
+                <video
+                  className={styles.video}
+                  src="/video1.mp4"
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
+                  onMouseLeave={(e) => {
+                    const vid = e.target as HTMLVideoElement;
+                    vid.pause();
+                    vid.currentTime = 0;
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {activeCta !== null && (
+        <div className={styles.modalOverlay} onClick={() => setActiveCta(null)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button 
+              className={styles.closeBtn}
+              onClick={() => setActiveCta(null)}
+              aria-label="Close video player"
+            >
+              <X size={18} />
+            </button>
+            <video
+              className={styles.modalVideo}
+              src="/video1.mp4"
+              controls
+              autoPlay
+              playsInline
+            />
+            <div className={styles.modalCta}>
+              <h3 className={styles.modalCtaTitle}>Promo Spesial!</h3>
+              <p className={styles.modalCtaDesc}>Jangan lewatkan penawaran menarik hari ini.</p>
+              <a href="https://www.alfamidiku.com/" target="_blank" rel="noopener noreferrer" className={styles.modalCtaLink}>
+                Klik di sini sekarang
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

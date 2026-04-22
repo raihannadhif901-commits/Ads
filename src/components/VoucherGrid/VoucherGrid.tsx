@@ -17,7 +17,10 @@ export default function VoucherGrid() {
       ? vouchers
       : vouchers.filter((v) => v.category === activeCategory);
 
-  const displayed = showAll ? filtered : filtered.slice(0, 4);
+  const bannerVouchers = filtered.filter((v) => v.isBanner);
+  const cardVouchers = filtered.filter((v) => !v.isBanner);
+
+  const displayed = showAll ? cardVouchers : cardVouchers.slice(0, 4);
 
   return (
     <section id="vouchers" className="section">
@@ -28,6 +31,26 @@ export default function VoucherGrid() {
         </div>
 
         <CategoryFilter active={activeCategory} onChange={(cat) => { setActiveCategory(cat); setShowAll(false); }} />
+
+        {bannerVouchers.length > 0 && (
+          <div className={styles.bannerWrap}>
+            {bannerVouchers.map((voucher) => (
+              <a
+                key={voucher.id}
+                href={voucher.bannerLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.bannerCard}
+              >
+                <img
+                  src={voucher.image}
+                  alt={voucher.title}
+                  className={styles.bannerImage}
+                />
+              </a>
+            ))}
+          </div>
+        )}
 
         <h2 className={styles.sectionTitle}>VOUCHERS</h2>
 

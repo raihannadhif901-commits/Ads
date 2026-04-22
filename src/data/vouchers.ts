@@ -7,6 +7,8 @@ export interface Voucher {
   originalPrice: string;
   salePrice: string;
   discountPercent: string;
+  isBanner?: boolean;
+  bannerLink?: string;
 }
 
 export const vouchers: Voucher[] = [
@@ -29,6 +31,66 @@ export const vouchers: Voucher[] = [
     originalPrice: 'Rp 20.000',
     salePrice: 'Rp 19.200',
     discountPercent: '4%',
+  },
+  {
+    id: 'banner-1',
+    brand: 'ALFAMIDI',
+    title: 'Spesial Kebutuhan Harian di Alfamidi',
+    category: 'All',
+    image: '/voucher1.png',
+    originalPrice: '',
+    salePrice: '',
+    discountPercent: '',
+    isBanner: true,
+    bannerLink: 'https://www.alfamidiku.com/',
+  },
+  {
+    id: 'banner-2',
+    brand: 'TOKOPEDIA',
+    title: 'Waktu Indonesia Belanja - Bebas Ongkir',
+    category: 'All',
+    image: '/voucher1.png',
+    originalPrice: '',
+    salePrice: '',
+    discountPercent: '',
+    isBanner: true,
+    bannerLink: 'https://www.tokopedia.com/',
+  },
+  {
+    id: 'banner-3',
+    brand: 'SHOPEE',
+    title: 'Shopee Promo Puncak Gratis Ongkir',
+    category: 'All',
+    image: '/voucher1.png',
+    originalPrice: '',
+    salePrice: '',
+    discountPercent: '',
+    isBanner: true,
+    bannerLink: 'https://shopee.co.id/',
+  },
+  {
+    id: 'banner-4',
+    brand: 'TRAVELOKA',
+    title: 'Liburan Hemat Traveloka Staycation Deals',
+    category: 'All',
+    image: '/voucher1.png',
+    originalPrice: '',
+    salePrice: '',
+    discountPercent: '',
+    isBanner: true,
+    bannerLink: 'https://www.traveloka.com/',
+  },
+  {
+    id: 'banner-5',
+    brand: 'GRAB',
+    title: 'GrabFood Kumpulan Promo Makan Kenyang',
+    category: 'All',
+    image: '/voucher1.png',
+    originalPrice: '',
+    salePrice: '',
+    discountPercent: '',
+    isBanner: true,
+    bannerLink: 'https://www.grab.com/',
   },
   {
     id: '3',
